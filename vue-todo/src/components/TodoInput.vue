@@ -16,9 +16,12 @@ export default {
   },
   methods: {
     addTodo: function () {
-      // 저장하는 로직
-      localStorage.setItem(this.newTodoItem, this.newTodoItem);
-      this.clearInput();
+      if (this.newTodoItem !== "") {
+        var obj = { completed: false, item: this.newTodoItem };
+        // 저장하는 로직
+        localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+        this.clearInput();
+      }
     },
     clearInput: function () {
       this.newTodoItem = "";
@@ -33,9 +36,11 @@ input:focus {
 }
 .inputBox {
   background: white;
+  width: 80%;
   height: 50px;
   line-height: 50px;
   border-radius: 5px;
+  margin-left: 150px;
 }
 .inputBox input {
   border-style: none;
