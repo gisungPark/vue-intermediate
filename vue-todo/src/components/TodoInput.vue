@@ -36,11 +36,11 @@ input:focus {
 }
 .inputBox {
   background: white;
-  width: 80%;
+  width: 50%;
   height: 50px;
   line-height: 50px;
   border-radius: 5px;
-  margin-left: 150px;
+  margin: 0 auto;
 }
 .inputBox input {
   border-style: none;

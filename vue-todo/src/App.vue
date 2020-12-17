@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <todo-header></todo-header>
     <todo-input></todo-input>
     <todo-list></todo-list>

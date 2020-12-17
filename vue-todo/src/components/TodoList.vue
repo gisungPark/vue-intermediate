@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <ul>
       <li
         v-for="(todoItem, index) in todoItems"
@@ -67,8 +67,9 @@ li {
   display: flex;
   min-height: 50px;
   height: 50px;
+  width: 50%;
   line-height: 50px;
-  margin: 0.5rem 0;
+  margin: 0.5rem auto;
   padding: 0 0.9rem;
   background: white;
   border-radius: 5px;
