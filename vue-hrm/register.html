@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app {
+            width: 90%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        table, td, th {
+            border: 1px solid black;
+        }
+        table {
+            margin: 5px auto;
+            text-align: center;
+            border-collapse: collapse;
+        }
+        table .group{
+            width: 200px;
+            height: 50px;
+            background-color: rgb(66, 124, 190);
+            color: white;
+        }
+        td input{
+            width: 150px;
+            height: 40px;
+        }
+    
+    </style>
+</head>
+<body>
+    
+    <div id="app">
+        <h1>HRM ADD EMPLOYEE</h1>
+        <form v-on:submit.prevent="submitForm">
+            <table>
+                <tr>
+                    <td class="group">이름</td>
+                    <td><input type="text" v-model="name"></td>
+                </tr>
+                <tr>
+                    <td class="group">부서</td>
+                    <td><input type="text" v-model="department"></td>
+                </tr>
+                <tr>
+                    <td class="group">직책</td>
+                    <td><input type="text" v-model="position"></td>
+                </tr>
+                <tr>
+                    <td class="group">연봉</td>
+                    <td><input type="text" v-model="salary"></td>
+                </tr>
+            </table>
+            <button type="submit">사원 추가</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                name: '',
+                department: '',
+                position: '',
+                salary: ''
+            },
+            methods: {
+                submitForm: function(){
+                    var emp = {
+                        idx: 1,
+                        name : this.name,
+                        department: this.department,
+                        position: this.position,
+                        salary: this.salary
+                    }
+                    this.clearInput();
+                    console.log('submit!!');
+                    console.log(emp);
+                
+                },
+                clearInput: function() {
+                    this.name = '';
+                    this.department ='';
+                    this.position = '';
+                    this.salary = '';
+                },
+            
+            },
+        })
+    </script>
+
+</body>
+</html>

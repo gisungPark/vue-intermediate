@@ -12,14 +12,24 @@
             margin: 0 auto;
             text-align: center;
         }
-
+        #searchForm{
+            float: right;
+            margin-bottom: 5px;
+        }
+        #searchForm input{
+            height: 20px;
+        }
+        #searchForm button{
+            height: 30px;
+        }
+    
         table, td, th {
             border: 1px solid black;
         }
 
-
         table {
             width: 100%;
+            margin-bottom: 10px;
             text-align: center;
             border-collapse: collapse;
         }
@@ -34,6 +44,10 @@
 <body>
     <div id="app">
         <h1>사원 목록</h1>
+        <div id="searchForm">
+            <input type="text" v-model="search">
+            <button v-on:click="seachByName">검색</button>
+        </div>
         <table>
             <thead>
                 <td>사원 아이디</td>
@@ -43,22 +57,35 @@
                 <td>연봉</td>
             </thead>
             <tbody>
-                <tr v-for="(emp, i) in emps">
-                    <td>{{ emp.idx }}</td>
-                    <td><a :href="'detailemp.html?idx=' + emp.idx">{{emp.name}}</a></td>
-                    <td>{{ emp.department }}</td>
-                    <td>{{ emp.position }}</td>
-                    <td>{{ emp.salary }}</td>
-                </tr>
+                <div v-if="flag">
+                    <tr v-for="(emp, i) in emps">
+                        <td>{{ emp.idx }}</td>
+                        <td><a :href="'detailemp.html?idx=' + emp.idx">{{emp.name}}</a></td>
+                        <td>{{ emp.department }}</td>
+                        <td>{{ emp.position }}</td>
+                        <td>{{ emp.salary }}</td>
+                    </tr>
+                </div>
+                <div v-if="!flag">
+                    <tr v-for="(emp, i) in emps" v-if="emp.name == search ">
+                        <td>{{ emp.idx }}</td>
+                        <td><a :href="'detailemp.html?idx=' + emp.idx">{{emp.name}}</a></td>
+                        <td>{{ emp.department }}</td>
+                        <td>{{ emp.position }}</td>
+                        <td>{{ emp.salary }}</td>
+                    </tr>
+                </div>
             </tbody>
-
         </table>
+        <button v-on:click="moveRegPage">사원 등록</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         new Vue({
             el: '#app',
             data: {
+                search: '',
+                flag: true,
                 emps: [{
                         idx: 1,
                         name: '박구곤',
@@ -88,6 +115,15 @@
                         salary: 2000
                     }
                 ]
+            },
+            methods: {
+                seachByName: function(){
+                    this.flag = !this.flag;
+                    console.log(this.flag);
+                },
+                moveRegPage: function(){
+                    location.href="register.html";
+                }
             },
         });
     </script>
