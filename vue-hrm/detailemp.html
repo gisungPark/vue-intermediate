@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #app {
+            width: 90%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        table, td, th {
+            border: 1px solid black;
+        }
+
+
+        table {
+            width: 100%;
+            text-align: center;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background-color: rgb(66, 124, 190);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>사원 목록</h1>
+        <table>
+            <thead>
+                <td>사원 아이디</td>
+                <td>사원명</td>
+                <td>부서</td>
+                <td>직책</td>
+                <td>연봉</td>
+            </thead>
+            <tbody>
+                <tr v-for="(emp, i) in emps" v-if="emp.idx == idx">
+
+                    <td>{{ emp.idx }}</td>
+                    <td>{{ emp.name }}</td>
+                    <td>{{ emp.department }}</td>
+                    <td>{{ emp.position }}</td>
+                    <td>{{ emp.salary }}</td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const params = (new URL(document.location)).searchParams;
+        const idx = params.get('idx');
+
+        new Vue({
+            el: '#app',
+            data: {
+                idx: idx,
+                emps: [{
+                        idx: 1,
+                        name: '박구곤',
+                        department: '인사부',
+                        position: '사장',
+                        salary: 6000
+                    },
+                    {
+                        idx: 2,
+                        name: '서정주',
+                        department: '기획부',
+                        position: '사장',
+                        salary: 8000
+                    },
+                    {
+                        idx: 3,
+                        name: '박구곤',
+                        department: '인사부',
+                        position: '사장',
+                        salary: 6000
+                    },
+                    {
+                        idx: 4,
+                        name: '윤정숙',
+                        department: '인사부',
+                        position: '사원',
+                        salary: 2000
+                    }
+                ]
+            },
+        });
+    </script>
+</body>
+
+</html>
